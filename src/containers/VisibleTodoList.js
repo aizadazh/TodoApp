@@ -25,7 +25,7 @@ const mapDispatchToProps = dispatch => ({
     toggleTodo: id => dispatch(toggleTodo(id))
 })
 
-export default connect (
+export default connect(
     mapStateToProps,
     mapDispatchToProps
 ) (TodoList);
