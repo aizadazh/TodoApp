@@ -1,4 +1,4 @@
-import { connect } from "connect";
+import { connect } from "react-redux";
 import { visibilityFilters } from "../actions/index";
 import { toggleTodo } from "../actions/index";
 import TodoList from "../components/TodoList";
