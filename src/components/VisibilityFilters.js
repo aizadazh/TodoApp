@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { setFilter } from "../redux/actions";
 import { VISIBILITY_FILTERS } from "../constants";
 
-const VisibilityFilters = ({ activeFilter, setFilter }) => {
+export const VisibilityFilters = ({ activeFilter, setFilter }) => {
   return (
     <div className="visibility-filters">
       {Object.keys(VISIBILITY_FILTERS).map(filterKey => {

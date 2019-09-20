@@ -4,7 +4,7 @@ import Todo from "./Todo";
 import { getTodos } from "../redux/selectors";
 import { VISIBILITY_FILTERS } from "../constants";
 
-const TodoList = ({ todos }) => (
+export const TodoList = ({ todos }) => (
   <ul className="todo-list">
     {todos && todos.length
       ? todos.map((todo, index) => {
