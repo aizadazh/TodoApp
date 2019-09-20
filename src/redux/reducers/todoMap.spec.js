@@ -1,14 +1,14 @@
-import todos from "./Todos";
+import todoMap from "./todoMap";
 
 describe('todos reducer', ()=> {
     test('should handle initial state', () => {
         expect(
-            todos(undefined, {})
+            todoMap(undefined, {})
         ).toEqual([])
     })
     test('it should handle ADD_TODO', () => {
         expect(
-            todos([], {
+            todoMap([], {
                 type: 'ADD_TODO',
                 text: 'Run the tests',
                 id: 0
@@ -21,7 +21,7 @@ describe('todos reducer', ()=> {
                 }
             ]) 
         expect(
-            todos([
+            todoMap([
                 {
                     text: 'Run the tests',
                     completed: false,
@@ -44,7 +44,7 @@ describe('todos reducer', ()=> {
                 }
             ])
         expect(
-            todos([
+            todoMap([
                 {
                     text: 'Run the tests',
                     completed: false,
@@ -78,7 +78,7 @@ describe('todos reducer', ()=> {
     })
     test('it should handle TOGGLE_TODO', () => {
         expect(
-            todos([
+            todoMap([
                 {
                     text: 'Run the tests',
                     completed: false,

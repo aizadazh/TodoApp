@@ -1,5 +1,5 @@
 import * as actions from "./index";
-import { ADD_TODO, SET_VISIBILITY_FILTER, TOGGLE_TODO } from "./constants/actionTypes";
+import { ADD_TODO, SET_FILTER, TOGGLE_TODO } from "./actionTypes";
 
 
 test('addTodo should create ADD_TODO action', () => {
@@ -10,8 +10,8 @@ test('addTodo should create ADD_TODO action', () => {
     })
 })
 test('setVisibilityFilter create SET_VISIBILITY_FILTER', () => {
-    expect(actions.setVisibilityFilter('active')).toEqual({
-        type: SET_VISIBILITY_FILTER,
+    expect(actions.setFilter('active')).toEqual({
+        type: SET_FILTER,
         filter: 'active'
     })
 })

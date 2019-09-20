@@ -1,15 +1,15 @@
 import React from "react";
-import { render } from "react-dom";
-import { createStore } from "redux";
+import ReactDOM from "react-dom";
+
 import { Provider } from "react-redux";
-import rootReducer from "./reducers/index";
-import App from "./components/App";
+import store from "./redux/store";
 
-const store = createStore(rootReducer)
+import TodoApp from "./TodoApp";
 
-render(
-    <Provider store = {store}>
-        <App />
-    </Provider>, 
-    document.getElementById('root')
+const rootElement = document.getElementById("root");
+ReactDOM.render(
+  <Provider store={store}>
+    <TodoApp />
+  </Provider>,
+  rootElement
 );
