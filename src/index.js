@@ -6,10 +6,10 @@ import store from "./redux/store";
 
 import TodoApp from "./TodoApp";
 
-const rootElement = document.getElementById("root");
-ReactDOM.render(
+
+export default ReactDOM.render(
   <Provider store={store}>
     <TodoApp />
   </Provider>,
-  rootElement
+  document.getElementById("root") || document.createElement('div')
 );

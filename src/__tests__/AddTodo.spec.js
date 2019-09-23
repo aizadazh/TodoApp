@@ -7,4 +7,7 @@ describe('Testing AddTodo component', () => {
     test('it renders correctly', ()=> {
         shallow(<AddTodo />)
     })
+    test('it renders input', () => {
+        shallow(<input />)
+    })
 })

@@ -2,7 +2,6 @@ import reducer from "../redux/reducers/todos";
 import { ADD_TODO } from "../redux/actionTypes";
 
 
-
 describe('Testing reducer todos', () => {
     test('it should return an initial state', () => {
         expect(reducer(undefined, {})).toEqual(
