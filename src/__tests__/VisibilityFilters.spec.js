@@ -1,23 +1,31 @@
-import reducer from "../redux/reducers/visibilityFilter";
-import { VISIBILITY_FILTERS } from "../constants";
-import { SET_FILTER } from "../redux/actionTypes";
+import React from "react";
+import { shallow } from "enzyme";
+import { VisibilityFilters } from "../components/VisibilityFilters";
 
-
-describe('Testing VisibilityFilters component', () => {
-   it('should return an initial state', () => {
-        expect(reducer(undefined, {})).toEqual(VISIBILITY_FILTERS.ALL)
-   })
-   it('should handle Set_Filter action', () => {
-        const completedState = VISIBILITY_FILTERS.COMPLETED;
-        const action = {
-            type: SET_FILTER,
-            payload: {
-                filter: 'completed'
-            }            
-        }
-          expect(reducer(completedState, action)).toEqual(VISIBILITY_FILTERS.COMPLETED)
-          
+function setup() {
+    const props = {
+        activeFilter: jest.fn(),
+        setFilter: jest.fn()
+    }
+    const wrapper = shallow(<VisibilityFilters {...props} />)
+    return {
+        props,
+        wrapper
+    }
+}
+    describe('TestingVisibilityFilters component', () =>{
+        test('it renders correctly', () =>{
+            const { wrapper } = setup()
+            expect(wrapper.find('div').hasClass('visibility-filters')).toBe(true)
+        
+        })
     })
-})
-           
-                
+    describe('Testing span', () => {
+        it('Test click event', () => {
+            const setFilter = jest.fn();
+        
+            const span = shallow((<span onClick={setFilter} />));
+            span.find('span').simulate('click');
+            expect(setFilter).toHaveBeenCalled();
+          });
+    })
