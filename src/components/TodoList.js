@@ -1,29 +1,39 @@
-import React from "react";
-import { connect } from "react-redux";
-import Todo from "./Todo";
-import { getTodos } from "../redux/selectors";
-import { VISIBILITY_FILTERS } from "../constants";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-export const TodoList = ({ todos }) => (
-  <ul className="todo-list">
-    {todos && todos.length
-      ? todos.map((todo, index) => {
-          return <Todo key={`todo-${todo.id}`} todo={todo} />;
-        })
-      : "No todos, yay!"}
-  </ul>
-);
+const TodoList = ({ todos, deleteTodo }) => {
+  const todoItems = todos.map(todo => (
+    <li key={todo.id}>
 
-const mapStateToProps = state => {
-  const { visibilityFilter } = state;
-  const allTodos = getTodos(state);
-  return {
-    todos:
-      visibilityFilter === VISIBILITY_FILTERS.ALL
-        ? allTodos
-        : visibilityFilter === VISIBILITY_FILTERS.COMPLETED
-          ? allTodos.filter(todo => todo.completed)
-          : allTodos.filter(todo => !todo.completed)
-  };
+      <button
+        type="button"
+        className="todo-delete"
+        onClick={() => deleteTodo(todo.id)}
+      >
+        Delete
+      </button>
+
+      <span className="todo-text">
+        {todo.text}
+      </span>
+    </li>
+  ));
+
+  return (
+    <ul>
+      {todoItems}
+    </ul>
+  );
 };
-export default connect(mapStateToProps)(TodoList);
+
+TodoList.propTypes = {
+  todos: PropTypes.arrayOf(PropTypes.shape(
+    {
+      id: PropTypes.number.isRequired,
+      text: PropTypes.string.isRequired,
+    },
+  )).isRequired,
+  deleteTodo: PropTypes.func.isRequired,
+};
+
+export default TodoList;

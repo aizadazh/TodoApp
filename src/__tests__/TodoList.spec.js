@@ -1,14 +1,33 @@
-import React from "react";
-import { shallow } from "enzyme";
-import { TodoList } from "../components/TodoList";
+import React from 'react';
+import { shallow } from 'enzyme';
+import TodoList from '../components/todoList';
 
+describe('TodoList component', () => {
+  const deleteMock = jest.fn();
 
-describe('Testing TodoLIst component', () => {
-    test('it renders correctly', () => {
-        const wrapper = shallow(<TodoList />) 
-        expect(wrapper.find('ul').hasClass('todo-list')).toBe(true)      
-    })
- 
+  const props = {
+    todos: [
+      {
+        id: 1,
+        text: 'A todo',
+      },
+    ],
+    deleteTodo: deleteMock,
+  };
 
+  const component = shallow(<TodoList {...props} />);
 
-})
+  it('Should render successfully', () => {
+    expect(component.exists()).toEqual(true);
+  });
+
+  it('Should display a todo when passed in as a prop', () => {
+    expect(component.find('.todo-text').text()).toEqual(props.todos[0].text);
+  });
+
+  it('Should call the deleteTodo function when Delete button is clicked', () => {
+    expect(deleteMock.mock.calls.length).toEqual(0);
+    component.find('.todo-delete').simulate('click');
+    expect(deleteMock.mock.calls.length).toEqual(1);
+  });
+});

@@ -1,56 +1,139 @@
-import reducer from "../redux/reducers/todos";
-import { ADD_TODO } from "../redux/actionTypes";
+import types from '../actions/actionTypes';
+import { reducer, initialState } from '../reducers/todos';
 
+describe('Reducer', () => {
+  const todoText = 'A todo';
 
-describe('Testing reducer todos', () => {
-    test('it should return an initial state', () => {
-        expect(reducer(undefined, {})).toEqual(
-            {
-                allIds: [],
-                byIds:{}
-            }
-        )
-    })
-    xit('it should handle ADD_TODO', () => {
-        expect(
-            reducer([], {
-                type: ADD_TODO,
-                text: "Run the tests"
-            })
-        ).toEqual([
-            {
-                text: "Run the tests",
-                completed: false,
-                id: 0
-            }
-        ])
-        expect(
-            reducer(
-                [
-                    {
-                        text: "Use Redux",
-                        completed: false,
-                        id: 0
-                    }
-                ],
-                {
-                    type: ADD_TODO,
-                    text: "Run the tests"
-                    }
-                )
-            ).toEqual([
-                {
-                    text: "Run the tests",
-                    completed: false,
-                    id: 1
-                },
-                {
-                    text: "Use Redux",
-                    completed: false,
-                    id: 0 
-                }
-            ]
+  it('Should return the initial state when no action passed', () => {
+    expect(reducer(undefined, {})).toEqual(initialState);
+  });
 
-        )
-    })
-})
+  describe('Submit todo', () => {
+    it('Should return the correct state', () => {
+      const action = {
+        type: types.SUBMIT_TODO,
+        id: 1,
+        text: todoText,
+      };
+
+      const expectedState = {
+        todos: [
+          {
+            id: 1,
+            text: todoText,
+          },
+        ],
+        deleted: {},
+        disableAddTodo: true,
+        disableUndelete: true,
+      };
+
+      expect(reducer(undefined, action)).toEqual(expectedState);
+    });
+  });
+
+  describe('Delete todo', () => {
+    it('Should return the correct state', () => {
+      const startingState = {
+        todos: [
+          {
+            id: 1,
+            text: todoText,
+          },
+        ],
+        deleted: {},
+        disableUndelete: true,
+      };
+
+      const action = {
+        type: types.DELETE_TODO,
+        id: 1,
+      };
+
+      const expectedState = {
+        todos: [],
+        deleted: {
+          id: 1,
+          text: todoText,
+        },
+        disableUndelete: false,
+      };
+
+      expect(reducer(startingState, action)).toEqual(expectedState);
+    });
+  });
+
+  describe('Undelete todo', () => {
+    it('Should return the correct state', () => {
+      const startingState = {
+        todos: [],
+        deleted: {
+          id: 1,
+          text: todoText,
+        },
+        disableUndelete: false,
+      };
+
+      const action = {
+        type: types.UNDELETE_TODO,
+      };
+
+      const expectedState = {
+        todos: [
+          {
+            id: 1,
+            text: todoText,
+          },
+        ],
+        deleted: {},
+        disableUndelete: true,
+      };
+
+      expect(reducer(startingState, action)).toEqual(expectedState);
+    });
+  });
+
+  describe('Input change', () => {
+    it('Should return the correct state when no value entered', () => {
+      const startingState = {
+        todos: [],
+        deleted: {},
+        disableAddTodo: true,
+      };
+
+      const action = {
+        type: types.INPUT_CHANGED,
+        inputText: '',
+      };
+
+      const expectedState = {
+        todos: [],
+        deleted: {},
+        disableAddTodo: true,
+      };
+
+      expect(reducer(startingState, action)).toEqual(expectedState);
+    });
+
+    it('Should return the correct state when a value is entered', () => {
+      const startingState = {
+        todos: [],
+        deleted: {},
+        disableAddTodo: true,
+      };
+
+      const action = {
+        type: types.INPUT_CHANGED,
+        inputText: todoText,
+      };
+
+      const expectedState = {
+        todos: [],
+        deleted: {},
+        disableAddTodo: false,
+      };
+
+      expect(reducer(startingState, action)).toEqual(expectedState);
+    });
+  });
+});

@@ -1,33 +1,57 @@
-import React from "react";
-import { connect } from "react-redux";
-import { addTodo } from "../redux/actions";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-export class AddTodo extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { input: "" };
-  }
+const AddTodo = ({ submitTodo, undeleteTodo, inputChanged, disableAddTodo, disableUndelete }) => {
+  let input;
+  // const disableAddTodo = true;
+  // const disableUndelete = true;
 
-  updateInput = input => {
-    this.setState({ input });
-  };
+  return (
+    <div>
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+          submitTodo(input.value);
+          input.value = '';
+        }}
+      >
 
-  render() {
-    return (
-      <div>
-        <input onBlur={e => this.updateInput(e.target.value)} />
+        <input
+          className="todo-input"
+          ref={(element) => {
+            input = element;
+          }}
+          onChange={() => inputChanged(input.value)}
+          placeholder="I'm going to..."
+        />
+
         <button
-          className="add-todo"
-          onClick={() => this.props.addTodo(this.state.input)}
+          type="submit"
+          className="todo-submit"
+          disabled={disableAddTodo}
         >
           Add Todo
         </button>
-      </div>
-    );
-  }
-}
 
-export default connect(
-  null,
-  { addTodo }
-)(AddTodo);
+        <button
+          className="todo-undelete"
+          onClick={() => undeleteTodo()}
+          disabled={disableUndelete}
+        >
+          Undelete
+        </button>
+
+      </form>
+    </div>
+  );
+};
+
+AddTodo.propTypes = {
+  submitTodo: PropTypes.func.isRequired,
+  undeleteTodo: PropTypes.func.isRequired,
+  inputChanged: PropTypes.func.isRequired,
+  disableAddTodo: PropTypes.bool.isRequired,
+  disableUndelete: PropTypes.bool.isRequired,
+};
+
+export default AddTodo;

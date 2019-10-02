@@ -1,15 +1,15 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import App from './TodoApp';
+import store from './store';
+// import registerServiceWorker from './registerServiceWorker';
 
-import { Provider } from "react-redux";
-import store from "./redux/store";
-
-import TodoApp from "./TodoApp";
-
-
-export default ReactDOM.render(
+ReactDOM.render(
   <Provider store={store}>
-    <TodoApp />
+    <App />
   </Provider>,
-  document.getElementById("root") || document.createElement('div')
+  document.getElementById('root'),
 );
+
+// registerServiceWorker();
