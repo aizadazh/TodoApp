@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+
 const TodoList = ({ todos, deleteTodo }) => {
-  const todoItems = todos.map(todo => {
-    return(
+if (todos) {
+  var todoItems = todos.map(todo => {
+  return ( 
       <li key={todo.id}>
         <button
           type="button"
@@ -12,21 +14,21 @@ const TodoList = ({ todos, deleteTodo }) => {
         >
           Delete
         </button>
-
         <span className="todo-text">
           {todo.text}
         </span>
       </li>
     )
   });
-  
+}
 
-  return (
-    <ul>
-      {todoItems}
-    </ul>
-  );
-};
+    return (
+      <ul>
+        {todoItems}
+      </ul>
+    );
+  };
+
 
 TodoList.propTypes = {
   todos: PropTypes.arrayOf(PropTypes.shape(
