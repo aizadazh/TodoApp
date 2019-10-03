@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import AddTodo from '../components/addTodo';
+import AddTodo from '../components/AddTodo';
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
