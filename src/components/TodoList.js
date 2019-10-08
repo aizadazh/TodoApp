@@ -2,22 +2,33 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-const TodoList = ({ todos, deleteTodo }) => {
+const TodoList = ({ todos, deleteTodo, editTodo, inputChanged}) => {
 if (todos) {
   var todoItems = todos.map(todo => {
   return ( 
       <li key={todo.id}>
-        <button
+        <span className="todo-text">
+          {todo.text}
+        </span>  
+        <button style={{marginLeft: "10%"}}
           type="button"
           className="todo-delete"
           onClick={() => deleteTodo(todo.id)}
         >
           Delete
         </button>
-        <span className="todo-text">
-          {todo.text}
-        </span>
-      </li>
+          
+        <button
+          type="button"
+          className="todo-delete"
+          onClick={() => (todo.id)}
+        >
+          Edit
+        </button>
+        <div style={{display: "block"}}>
+          <input value={todo.text} onFocus={() => inputChanged(todo.inputText)}></input>
+        </div>
+        </li>
     )
   });
 }
@@ -38,6 +49,9 @@ TodoList.propTypes = {
     },
   )).isRequired,
   deleteTodo: PropTypes.func.isRequired,
+  editTodo: PropTypes.func.isRequired,
+  inputChanged: PropTypes.func.isRequired,
+  
 };
 
 export default TodoList;
