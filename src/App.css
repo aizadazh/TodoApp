@@ -1,21 +1,40 @@
 body {
-    background-color: #e4e4e4;
+    background-color: #be8181;
+    font-family: 'Courier New', Courier, monospace;
   }
   
   .todo-input {
     margin-right: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    padding-left: 10px;
   }
   
   .todo-submit {
     margin-right: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    background: green;
+    border: none;
+    color: black;
   }
   
   .todo-delete {
     margin-right: 12px;
-    margin-bottom: 8px;  
+    margin-bottom: 8px; 
+    font-family: 'Courier New', Courier, monospace; 
+    background: red;
+    border: none;
+  }
+  .todo-undelete {   
+    font-family: 'Courier New', Courier, monospace; 
+    background: orange;
+    border: none;
+    color: black;
   }
   
   button {
-    border-radius: 2px;
+    border-radius: 5px;
+  }
+  .todo-text {
+    font-family: 'Courier New', Courier, monospace;
   }
     

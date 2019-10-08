@@ -20,12 +20,12 @@ if (todos) {
           
         <button
           type="button"
-          className="todo-delete"
+          className="todo-edit"
           onClick={() => (todo.id)}
         >
           Edit
         </button>
-        <div style={{display: "block"}}>
+        <div style={{display: "none"}}>
           <input value={todo.text} onFocus={() => inputChanged(todo.inputText)}></input>
         </div>
         </li>
