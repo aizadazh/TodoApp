@@ -30,6 +30,9 @@ export const App = ({
       <TodoList
         todos={todos}
         deleteTodo={deleteTodo}
+        submitTodo={submitTodo}
+        inputChanged={inputChanged}
+        disableAddTodo={disableAddTodo}
       />
     </div>
 );

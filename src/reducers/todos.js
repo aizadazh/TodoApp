@@ -35,17 +35,7 @@ export const initialState = {
           deleted: state.todos.filter(todo => todo.id === action.id)[0],
           disableUndelete: false,
         };
-      case types.EDIT_TODO:
-        return {
-          ...state,
-          todos: [
-            ...state.todos.filter(todo => (
-              todo.id !== action.id
-            )),
-          ],
-          edited: state.todos.filter(todo => todo.id === action.id)[0],
-          
-        };
+      
   
       case types.UNDELETE_TODO:
         return {

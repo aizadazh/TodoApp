@@ -35,12 +35,7 @@ const actions = {
       inputText,
     };
   },
-  editTodo(id) {
-    return {
-      type: types.EDIT_TODO,
-      id,
-    };
-  },
+  
 };
 
 export default actions;

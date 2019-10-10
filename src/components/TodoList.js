@@ -1,44 +1,66 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { submitTodo } from './AddTodo'
 
+const TodoList = ({ todos, deleteTodo, submitTodo, inputChanged, disableAddTodo }) => {
 
-const TodoList = ({ todos, deleteTodo, editTodo, inputChanged}) => {
-if (todos) {
-  var todoItems = todos.map(todo => {
-  return ( 
-      <li key={todo.id}>
-        <span className="todo-text">
-          {todo.text}
-        </span>  
-        <button style={{marginLeft: "10%"}}
-          type="button"
-          className="todo-delete"
-          onClick={() => deleteTodo(todo.id)}
-        >
-          Delete
+  if (todos) {
+
+    var todoItems = todos.map(todo => {
+      let input;
+      return (
+
+        <li key={todo.id}>
+          <span className="todo-text">
+            {todo.text}
+          </span>
+          <button style={{ marginLeft: "10%" }}
+            type="button"
+            className="todo-delete"
+            onClick={() => deleteTodo(todo.id)}
+          >
+            Delete
         </button>
-          
-        <button
-          type="button"
-          className="todo-edit"
-          onClick={() => (todo.id)}
-        >
-          Edit
-        </button>
-        <div style={{display: "none"}}>
-          <input value={todo.text} onFocus={() => inputChanged(todo.inputText)}></input>
-        </div>
+
+          <form
+            onSubmit={(event) => {
+              event.preventDefault();
+              submitTodo(input.value);
+              deleteTodo(todo.id)
+            }}
+          >
+            <div>
+              <input
+                ref={(element) => {
+                  input = element;
+                }}
+                onChange={() => inputChanged(input.value)}
+                placeholder={todo.text}
+              />
+              <button
+                type="submit"
+                className="todo-submit"
+                disabled={disableAddTodo}
+              >
+                edit
+              </button>
+            </div>
+
+          </form>
         </li>
-    )
-  });
-}
 
-    return (
-      <ul>
-        {todoItems}
-      </ul>
-    );
-  };
+      )
+    });
+  }
+
+
+  return (
+
+    <ul>
+      {todoItems}
+    </ul>
+  );
+};
 
 
 TodoList.propTypes = {
@@ -49,9 +71,13 @@ TodoList.propTypes = {
     },
   )).isRequired,
   deleteTodo: PropTypes.func.isRequired,
-  editTodo: PropTypes.func.isRequired,
   inputChanged: PropTypes.func.isRequired,
-  
+  disableAddTodo: PropTypes.bool.isRequired,
+  submitTodo: PropTypes.func.isRequired,
+
 };
+
+
+
 
 export default TodoList;

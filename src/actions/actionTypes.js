@@ -3,7 +3,6 @@ const types = {
     DELETE_TODO: 'DELETE_TODO',
     UNDELETE_TODO: 'UNDELETE_TODO',
     INPUT_CHANGED: 'INPUT_CHANGED',
-    EDIT_TODO: "EDIT_TODO",
   };
   
   export default types;
