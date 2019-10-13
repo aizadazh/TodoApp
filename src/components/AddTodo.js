@@ -1,10 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
 
 const AddTodo = ({ submitTodo, undeleteTodo, inputChanged, disableAddTodo, disableUndelete }) => {
   let input;
-  // const disableAddTodo = true;
-  // const disableUndelete = true;
 
   return (
     <div>
@@ -46,12 +44,5 @@ const AddTodo = ({ submitTodo, undeleteTodo, inputChanged, disableAddTodo, disab
   );
 };
 
-AddTodo.propTypes = {
-  submitTodo: PropTypes.func.isRequired,
-  undeleteTodo: PropTypes.func.isRequired,
-  inputChanged: PropTypes.func.isRequired,
-  disableAddTodo: PropTypes.bool.isRequired,
-  disableUndelete: PropTypes.bool.isRequired,
-};
 
 export default AddTodo;

@@ -1,13 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { submitTodo } from './AddTodo'
+import FormTodo from './FormTodo'
 
-const TodoList = ({ todos, deleteTodo, submitTodo, inputChanged, disableAddTodo }) => {
-
+const TodoList = ({ todos, deleteTodo, inputChanged, editTodo, disableAddTodo, show}) => {
+  
   if (todos) {
-
     var todoItems = todos.map(todo => {
-      let input;
       return (
 
         <li key={todo.id}>
@@ -20,33 +17,14 @@ const TodoList = ({ todos, deleteTodo, submitTodo, inputChanged, disableAddTodo 
             onClick={() => deleteTodo(todo.id)}
           >
             Delete
+
         </button>
-
-          <form
-            onSubmit={(event) => {
-              event.preventDefault();
-              submitTodo(input.value);
-              deleteTodo(todo.id)
-            }}
-          >
-            <div>
-              <input
-                ref={(element) => {
-                  input = element;
-                }}
-                onChange={() => inputChanged(input.value)}
-                placeholder={todo.text}
-              />
-              <button
-                type="submit"
-                className="todo-submit"
-                disabled={disableAddTodo}
-              >
-                edit
-              </button>
-            </div>
-
-          </form>
+        <button
+          onClick={()=> show(todo.id)}
+        >
+          Edit
+        </button>
+            <FormTodo todo={todo} inputChanged={inputChanged} editTodo={editTodo} disableAddTodo={disableAddTodo} />
         </li>
 
       )
@@ -63,19 +41,6 @@ const TodoList = ({ todos, deleteTodo, submitTodo, inputChanged, disableAddTodo 
 };
 
 
-TodoList.propTypes = {
-  todos: PropTypes.arrayOf(PropTypes.shape(
-    {
-      id: PropTypes.number.isRequired,
-      text: PropTypes.string.isRequired,
-    },
-  )).isRequired,
-  deleteTodo: PropTypes.func.isRequired,
-  inputChanged: PropTypes.func.isRequired,
-  disableAddTodo: PropTypes.bool.isRequired,
-  submitTodo: PropTypes.func.isRequired,
-
-};
 
 
 

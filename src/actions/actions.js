@@ -13,6 +13,7 @@ const actions = {
       type: types.SUBMIT_TODO,
       id: nextId(),
       text,
+    
     };
   },
 
@@ -35,7 +36,19 @@ const actions = {
       inputText,
     };
   },
-  
+  editTodo(text,id) {
+    return {
+      type: types.EDIT_TODO,
+      text,
+      id,
+    };
+  },
+  show(id){
+    return{
+      type:types.SHOW,
+      id,
+    }
+  }
 };
 
 export default actions;
