@@ -32,9 +32,11 @@ export const reducer = (state = initialState, action) => {
         todos: [
           ...state.todos,
           ...state.todos.filter(todo => {
-            if (todo.id === action.id) {              
+            if (todo.id === action.id) { 
+              {             
                 todo.text = action.text
-                todo.show = 'none'                
+                todo.show = 'none'
+              }                
               } 
           }),
 

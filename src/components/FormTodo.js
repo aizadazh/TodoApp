@@ -23,7 +23,7 @@ function FormTodo(props) {
                     disabled={props.disableAddTodo}
                 >
                     Submit
-          </button>
+                </button>
             </div>
 
         </form>
