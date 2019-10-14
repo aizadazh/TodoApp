@@ -10,7 +10,7 @@ function FormTodo(props) {
         >
             <div style={{display:props.todo.show}}>
                 <input
-
+                    className="todo-input"
                     ref={(element) => {
                         input = element;
                     }}
@@ -22,7 +22,7 @@ function FormTodo(props) {
                     className="todo-submit"
                     disabled={props.disableAddTodo}
                 >
-                    edit
+                    Submit
           </button>
             </div>
 

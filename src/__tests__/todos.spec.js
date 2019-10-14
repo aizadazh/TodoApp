@@ -26,6 +26,29 @@ describe('Reducer', () => {
         deleted: {},
         disableAddTodo: true,
         disableUndelete: true,
+        edited: {},
+        text: "A todo",
+        show: "none"
+      };
+
+      expect(reducer(undefined, action)).toEqual(expectedState);
+    });
+  });
+  describe('Edit todo', () => {
+    it('Should return the correct state', () => {
+      const action = {
+        type: types.EDIT_TODO,
+        id: 1,
+        text: todoText,
+      };
+
+      const expectedState = {
+        todos: [
+          {
+            id: 1,
+            text: todoText,
+          },
+        ],
       };
 
       expect(reducer(undefined, action)).toEqual(expectedState);

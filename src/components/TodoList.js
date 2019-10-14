@@ -5,26 +5,24 @@ const TodoList = ({ todos, deleteTodo, inputChanged, editTodo, disableAddTodo, s
   
   if (todos) {
     var todoItems = todos.map(todo => {
-      return (
-
-        <li key={todo.id}>
-          <span className="todo-text">
-            {todo.text}
-          </span>
-          <button style={{ marginLeft: "10%" }}
+      return (  
+        <li key={todo.id}>     
+          <button
             type="button"
             className="todo-delete"
             onClick={() => deleteTodo(todo.id)}
+          >Delete</button>
+          <button
+            className="todo-submit"
+            onClick={()=> show(todo.id)}
           >
-            Delete
-
-        </button>
-        <button
-          onClick={()=> show(todo.id)}
-        >
-          Edit
-        </button>
-            <FormTodo todo={todo} inputChanged={inputChanged} editTodo={editTodo} disableAddTodo={disableAddTodo} />
+            Edit
+          </button>
+          
+          <span className="todo-text">
+            {todo.text}
+          </span>
+              <FormTodo todo={todo} inputChanged={inputChanged} editTodo={editTodo} disableAddTodo={disableAddTodo} />
         </li>
 
       )
@@ -34,9 +32,9 @@ const TodoList = ({ todos, deleteTodo, inputChanged, editTodo, disableAddTodo, s
 
   return (
 
-    <ul>
+    <ol>
       {todoItems}
-    </ul>
+    </ol>
   );
 };
 

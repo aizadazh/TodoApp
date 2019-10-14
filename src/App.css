@@ -7,12 +7,14 @@ body {
     margin-right: 10px;
     font-family: 'Courier New', Courier, monospace;
     padding-left: 10px;
+    border-radius: 5px;
+    border: none;
   }
   
   .todo-submit {
     margin-right: 10px;
     font-family: 'Courier New', Courier, monospace;
-    background: green;
+    background: #cacaca;
     border: none;
     color: black;
   }
